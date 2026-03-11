@@ -7,8 +7,15 @@ import router from './routes/userRoutes.js';
 // Application Configuration    
 const PORT = process.env.PORT || 1504;
 const app = express();
-await pool.connect().then(() => console.log('Connected to PostgreSQL database'))
-.catch(err => console.error('Error connecting to PostgreSQL database:', err));
+
+(async () => {
+    try {
+        await pool.connect();
+        console.log('Connected to PostgreSQL database');
+    } catch (err) {
+        console.error('Error connecting to PostgreSQL database:', err);
+    }
+})();
 
 // Middleware
 app.use(express.json());
