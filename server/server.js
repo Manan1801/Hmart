@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pool from './configs/postgresSQL.js';
+import router from './routes/userRoutes.js';
 
 // Application Configuration    
 const PORT = process.env.PORT || 1504;
@@ -17,6 +18,7 @@ app.use(cors());
 app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hello, World!' });
 });
+app.use('/', router);
 
 // Start the Server
 app.listen(PORT, () => {
