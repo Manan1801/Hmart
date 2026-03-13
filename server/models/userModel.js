@@ -1,11 +1,11 @@
 import pool from "../configs/postgresSQL.js";
 
 // Function to create a new user
-export const createUser = async(name,email,password_hash,phone,role)=>{
+export const createUser = async(name,email,password_hash,role,phone)=>{
     const query = 
-    `INSERT INTO users (name, email, password_hash, phone, role)
-     VALUES($1, $2, $3, $4, $5) RETURNING id,name,email`;
-    const values = [name,email,password_hash,phone,role];
+    `INSERT INTO users (name, email, password_hash,role, phone)
+     VALUES($1, $2, $3, $4,$5) RETURNING *`;
+    const values = [name,email,password_hash,role,phone];
 
     const result = await pool.query(query, values);
     return result.rows[0];

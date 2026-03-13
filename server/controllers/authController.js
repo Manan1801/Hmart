@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createUser, findUserByEmail } from "../models/userModel.js";
+import { createUser, getUserByEmail } from "../models/userModel.js";
 
 const JWT_SECRET = "supersecret";
 
@@ -11,7 +11,9 @@ export const register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await createUser(name, email, hashedPassword, phone);
+    const role = "customer"; // Default role for new users
+
+    const user = await createUser(name, email, hashedPassword,role, phone);
 
     res.status(201).json({
       message: "User registered",
@@ -32,7 +34,7 @@ export const login = async (req, res) => {
 
     const { email, password } = req.body;
 
-    const user = await findUserByEmail(email);
+    const user = await getUserByEmail(email);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });

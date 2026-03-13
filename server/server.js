@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import pool from './configs/postgresSQL.js';
 import router from './routes/userRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 // Application Configuration    
 const PORT = process.env.PORT || 1504;
@@ -27,6 +28,7 @@ app.get('/api/hello', (req, res) => {
 });
 app.use('/', router);
 
+app.use('/api/auth', authRoutes);
 // Start the Server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
