@@ -29,6 +29,11 @@ app.get('/api/hello', (req, res) => {
 app.use('/', router);
 
 app.use('/api/auth', authRoutes);
+
+app.get("/test", (req,res)=>{
+    res.send("Server working");
+});
+
 // Start the Server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
