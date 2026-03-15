@@ -1,39 +1,54 @@
-import Image from "next/image";
+import Link from "next/link";
+import ProductGrid from "@/components/ProductGrid";
+import CategoryCard from "@/components/CategoryCard";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center dark:bg-zinc-50 bg-black font-sans">
-      <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-center px-6 text-center">
+    <div className="space-y-12">
 
-        <Image
-          src="/logo.svg"
-          alt="Hmart Logo"
-          width={280}
-          height={150}
-          priority
-        />
-
-        <h1 className="mt-10 text-5xl font-bold tracking-tight dark:text-zinc-900 text-white">
+      {/* Hero Section */}
+      <section className="text-center py-16 bg-gray-100 rounded-lg">
+        <h1 className="text-4xl font-bold mb-4">
           Hmart
         </h1>
 
-        <p className="mt-4 text-xl font-medium dark:text-zinc-600 text-zinc-300">
+        <p className="text-lg text-gray-600 mb-6">
           Different Needs. One Solution.
         </p>
 
-        <p className="mt-8 max-w-xl text-lg text-zinc-500 dark:text-zinc-400">
-          A new generation ecommerce platform designed to bring everything you
-          need into one seamless experience. Smarter discovery, faster delivery,
-          and a marketplace built for modern shoppers.
-        </p>
+        <Link
+          href="/products"
+          className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800"
+        >
+          Explore Products
+        </Link>
+      </section>
 
-        <div className="mt-12 flex gap-4">
-          <button className="rounded-full dark:bg-black px-8 py-3 dark:text-black transition hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200">
-            Coming Soon
-          </button>
+
+      {/* Categories Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-6">
+          Shop by Categories
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <CategoryCard name="Electronics" />
+          <CategoryCard name="Fashion" />
+          <CategoryCard name="Home" />
+          <CategoryCard name="Accessories" />
         </div>
+      </section>
 
-      </main>
+
+      {/* Featured Products */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-6">
+          Featured Products
+        </h2>
+
+        <ProductGrid />
+      </section>
+
     </div>
   );
 }
