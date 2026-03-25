@@ -6,6 +6,7 @@ import router from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import productRoutes from './routes/productRoutes.js';
+import cartRoutes from './routes/cartRoutes.js';
 
 // Application Configuration    
 const PORT = process.env.PORT || 1504;
@@ -40,6 +41,7 @@ app.use('/',categoryRoutes);
 
 app.use('/',productRoutes);
 
+app.use('/',cartRoutes);
 
 // Start the Server
 app.listen(PORT, () => {
