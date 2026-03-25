@@ -7,6 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
+import orderRoutes from "./routes/orderRoutes.js";
 
 // Application Configuration    
 const PORT = process.env.PORT || 1504;
@@ -35,8 +36,9 @@ app.use('/api',productRoutes);
 
 app.use('/api',cartRoutes);
 
+app.use("/api", orderRoutes);
+
 // Start the Server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-

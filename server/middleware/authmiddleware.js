@@ -1,16 +1,19 @@
 import jwt from "jsonwebtoken";
 
+const JWT_SECRET = process.env.JWT_SECRET; // ✅ same as login
+
 export const verifyToken = (req, res, next) => {
 
-    const token = req.headers.authorization;
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
+    if (!authHeader) {
         return res.status(401).json({ message: "Access denied" });
     }
 
     try {
+        const token = authHeader.split(" ")[1];
 
-        const decoded = jwt.verify(token.split(" ")[1], "SECRET_KEY");
+        const decoded = jwt.verify(token, JWT_SECRET); // ✅ FIXED
 
         req.user = decoded;
 

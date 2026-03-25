@@ -7,9 +7,6 @@ import { verifyToken } from "../middleware/authmiddleware.js";
 const router = express.Router();
 
 
-router.get("/cart", getCart);
-router.get("/cart", verifyToken, getCart);
-
 
 
 
