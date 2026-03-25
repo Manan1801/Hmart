@@ -25,23 +25,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// API Routes
-app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello, World!' });
-});
 app.use('/', router);
 
 app.use('/api/auth', authRoutes);
 
-app.get("/test", (req,res)=>{
-    res.send("Server working");
-});
+app.use('/api',categoryRoutes);
 
-app.use('/',categoryRoutes);
+app.use('/api',productRoutes);
 
-app.use('/',productRoutes);
-
-app.use('/',cartRoutes);
+app.use('/api',cartRoutes);
 
 // Start the Server
 app.listen(PORT, () => {
